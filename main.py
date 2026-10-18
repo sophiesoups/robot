@@ -32,16 +32,19 @@ def can_move(row, col, d_row, d_col):
     # True if one more step in this direction stays inside the grid
     return 0 <= row + d_row < GRID_SIZE and 0 <= col + d_col < GRID_SIZE
 
-while can_move(row, col, d_row, d_col):
-    print("Moving one step forward.")
-    row = min(max(row + d_row, 0), GRID_SIZE - 1)
-    col = min(max(col + d_col, 0), GRID_SIZE - 1)
+while row != 9 and col != 0: 
+    while can_move(row, col, d_row, d_col):
+        print("Moving one step forward.")
+        row = min(max(row + d_row, 0), GRID_SIZE - 1)
+        col = min(max(col + d_col, 0), GRID_SIZE - 1)
+        print(f"My current location is ({row}, {col}), facing {dir_name}")  
+
+    print("I have a wall in front of me!")  
+
+    keys = list(DIRECTIONS)
+    index = keys.index(direction)
+    direction = keys[(index + 1) % 4]
+    dir_name, d_row, d_col = DIRECTIONS[direction]
     print(f"My current location is ({row}, {col}), facing {dir_name}")  
 
-print("I have a wall in front of me!")  
-
-keys = list(DIRECTIONS)
-index = keys.index(direction)
-direction = keys[(index + 1) % 4]
-dir_name, d_row, d_col = DIRECTIONS[direction]
-print(f"My current location is ({row}, {col}), facing {dir_name}")  
+print("I am drinking Ribena! I am happy!")
