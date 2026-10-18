@@ -28,8 +28,14 @@ print(f"Hello, my name is {name} and my ID is {IDENTIFIER}")
 print(f"I am facing {dir_name}.")
 print(f"My current location is ({row}, {col}). {print_location(row, col)}")
 
-row = min(max(row + d_row, 0), GRID_SIZE - 1)
-col = min(max(col + d_col, 0), GRID_SIZE - 1)
+def can_move(row, col, d_row, d_col):
+    # True if one more step in this direction stays inside the grid
+    return 0 <= row + d_row < GRID_SIZE and 0 <= col + d_col < GRID_SIZE
 
-print("Moving one step forward.")
-print(f"My current location is ({row}, {col}). {print_location(row, col)}")  
+while can_move(row, col, d_row, d_col):
+    print("Moving one step forward.")
+    row = min(max(row + d_row, 0), GRID_SIZE - 1)
+    col = min(max(col + d_col, 0), GRID_SIZE - 1)
+    print(f"My current location is ({row}, {col}), facing {dir_name}")  
+
+print("I have a wall in front of me!")  
