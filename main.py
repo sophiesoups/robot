@@ -28,14 +28,8 @@ print(f"Hello, my name is {name} and my ID is {IDENTIFIER}")
 print(f"I am facing {dir_name}.")
 print(f"My current location is ({row}, {col}). {print_location(row, col)}")
 
-if direction == "s" and row != (GRID_SIZE - 1):
-    row += 1
-elif direction == "n" and row != 0:
-    row -= 1
-elif direction == "e" and col != (GRID_SIZE - 1):
-    col += 1
-elif direction == "w" and col != 0:
-    col -= 1
+row = min(max(row + d_row, 0), GRID_SIZE - 1)
+col = min(max(col + d_col, 0), GRID_SIZE - 1)
 
 print("Moving one step forward.")
 print(f"My current location is ({row}, {col}). {print_location(row, col)}")  
