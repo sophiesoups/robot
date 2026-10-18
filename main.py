@@ -21,9 +21,12 @@ def determine_quadrant(row, col):
     horizontal = "left" if col < half else "right"
     return f"{vertical} {horizontal}"
 
+def print_location(row, col):
+    return f"I am in the {determine_quadrant(row, col)} quadrant"
+
 print(f"Hello, my name is {name} and my ID is {IDENTIFIER}")
 print(f"I am facing {dir_name}.")
-print(f"My current location is ({row}, {col}). I am in the {determine_quadrant(row, col)} quadrant.")
+print(f"My current location is ({row}, {col}). {print_location(row, col)}")
 
 if direction == "s" and row != (GRID_SIZE - 1):
     row += 1
@@ -35,4 +38,4 @@ elif direction == "w" and col != 0:
     col -= 1
 
 print("Moving one step forward.")
-print(f"My current location is ({row}, {col}). I am in the {determine_quadrant(row, col)} quadrant.")  
+print(f"My current location is ({row}, {col}). {print_location(row, col)}")  
