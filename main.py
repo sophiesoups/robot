@@ -2,45 +2,27 @@ import random
 
 IDENTIFIER = 1000
 GRID_SIZE = 10
-dirs = ["n", "s", "e", "w"]
 
 name = input("What is the name of the robot? ")
 
-"""
-row = int(input("What is its current row coordinate? "))
-col = int(input("What is its current column coordinate? "))
-direction = input("What is its initial direction [n|s|e|w]? ")
-"""
-row, col = random.randint(0, GRID_SIZE - 1), random.randint(0, GRID_SIZE - 1)
-direction = random.choice(dirs)
+row, col = random.randrange(GRID_SIZE), random.randrange(GRID_SIZE)
 
-if direction == "n":
-    dir = "North"
-elif direction == "s":
-    dir = "South"
-elif direction == "e":
-    dir = "East"
-else:
-    dir = "West"
+DIRECTIONS = {"n": ("North", -1, 0),
+              "s": ("South", 1, 0),
+              "e": ("East", 0, 1),
+              "w": ("West", 0, -1)}
 
-"""
-row, col = [max(x, 0) for x in (row, col)]
-row, col = [min(x, GRID_SIZE - 1) for x in (row, col)]
-"""
+direction = random.choice(list(DIRECTIONS))
+dir_name, d_row, d_col = DIRECTIONS[direction]
 
 def determine_quadrant(row, col):
-    if row < (GRID_SIZE / 2) and col < (GRID_SIZE / 2):
-        quadrant = "top left"
-    elif row < (GRID_SIZE / 2) and col >= (GRID_SIZE / 2):
-        quadrant = "top right"
-    elif row >= (GRID_SIZE / 2) and col < (GRID_SIZE / 2):
-        quadrant = "bottom left"
-    else:
-        quadrant = "bottom right"
-    return quadrant
+    half = GRID_SIZE / 2
+    vertical = "top" if row < half else "bottom"
+    horizontal = "left" if col < half else "right"
+    return f"{vertical} {horizontal}"
 
 print(f"Hello, my name is {name} and my ID is {IDENTIFIER}")
-print(f"I am facing {dir}.")
+print(f"I am facing {dir_name}.")
 print(f"My current location is ({row}, {col}). I am in the {determine_quadrant(row, col)} quadrant.")
 
 if direction == "s" and row != (GRID_SIZE - 1):
