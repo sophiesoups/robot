@@ -8,8 +8,8 @@ name = input("What is the name of the robot? ")
 row, col = random.randrange(GRID_SIZE), random.randrange(GRID_SIZE)
 
 DIRECTIONS = {"n": ("North", -1, 0),
-              "s": ("South", 1, 0),
               "e": ("East", 0, 1),
+              "s": ("South", 1, 0),
               "w": ("West", 0, -1)}
 
 direction = random.choice(list(DIRECTIONS))
@@ -39,3 +39,9 @@ while can_move(row, col, d_row, d_col):
     print(f"My current location is ({row}, {col}), facing {dir_name}")  
 
 print("I have a wall in front of me!")  
+
+keys = list(DIRECTIONS)
+index = keys.index(direction)
+direction = keys[(index + 1) % 4]
+dir_name, d_row, d_col = DIRECTIONS[direction]
+print(f"My current location is ({row}, {col}), facing {dir_name}")  
